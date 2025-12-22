@@ -5,13 +5,13 @@ import {
   ImportTemplateRequest,
   ImportTemplateResponse,
 } from "@/types/template";
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 export const templateAPI = {
   getTemplates: async (
     filters: TemplateFilters = {}
   ): Promise<PaginatedTemplates> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
 
     const { page = 1, page_size = 10, search } = filters;
 
@@ -40,7 +40,7 @@ export const templateAPI = {
   importTemplate: async (
     templateId: number
   ): Promise<ImportTemplateResponse> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${BASE_API_URL}/api/import-template/`, {
       method: "POST",

@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import {
   Video,
   Videos,
@@ -9,7 +9,7 @@ import {
 export const videosAPI = {
   // Get all videos
   getVideos: async (): Promise<Videos> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const url = new URL(`${BASE_API_URL}/api/videos/`);
 
     const response = await fetch(url.toString(), {
@@ -27,7 +27,7 @@ export const videosAPI = {
 
   // Create new video
   createVideo: async (data: CreateVideoData): Promise<Video> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const url = new URL(`${BASE_API_URL}/api/videos/`);
 
     const response = await fetch(url.toString(), {
@@ -46,7 +46,7 @@ export const videosAPI = {
 
   // Update video
   updateVideo: async (id: number, data: UpdateVideoData): Promise<Video> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const url = new URL(`${BASE_API_URL}/api/videos/${id}/`);
 
     const response = await fetch(url.toString(), {
@@ -65,7 +65,7 @@ export const videosAPI = {
 
   // Delete video
   deleteVideo: async (id: number): Promise<void> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const url = new URL(`${BASE_API_URL}/api/videos/${id}/`);
 
     const response = await fetch(url.toString(), {

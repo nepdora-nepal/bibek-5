@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -14,7 +14,7 @@ import {
 export const faqApi = {
   // Get all FAQs
   getFAQs: async (): Promise<FAQ[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const url = `${API_BASE_URL}/api/faq/`;
 
     const response = await fetch(url, {
@@ -28,7 +28,7 @@ export const faqApi = {
 
   // Get single FAQ by ID
   getFAQ: async (id: number): Promise<GetFAQResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/faq/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -40,7 +40,7 @@ export const faqApi = {
 
   // Create new FAQ
   createFAQ: async (data: CreateFAQRequest): Promise<CreateFAQResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/faq/`, {
       method: "POST",
       headers: createHeaders(),
@@ -56,7 +56,7 @@ export const faqApi = {
     id: number,
     data: UpdateFAQRequest
   ): Promise<UpdateFAQResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/faq/${id}/`, {
       method: "PATCH",
       headers: createHeaders(),
@@ -69,7 +69,7 @@ export const faqApi = {
 
   // Delete FAQ
   deleteFAQ: async (id: number): Promise<DeleteFAQResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/faq/${id}/`, {
       method: "DELETE",
       headers: createHeaders(),

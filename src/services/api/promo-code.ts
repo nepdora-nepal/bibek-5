@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -18,7 +18,7 @@ export const usePromoCodeApi = {
   ): Promise<GetPromoCodesResponse> => {
     const { page = 1, page_size = 10, search } = params;
 
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     // Build query parameters
     const queryParams = new URLSearchParams({
@@ -63,7 +63,7 @@ export const usePromoCodeApi = {
   },
 
   getPromoCode: async (id: number): Promise<PromoCode> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/promocode/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -76,7 +76,7 @@ export const usePromoCodeApi = {
   createPromoCode: async (
     data: CreatePromoCodeRequest
   ): Promise<CreatePromoCodeResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/promocode/`, {
       method: "POST",
@@ -96,7 +96,7 @@ export const usePromoCodeApi = {
     id: number,
     data: UpdatePromoCodeRequest
   ): Promise<UpdatePromoCodeResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/promocode/${id}/`, {
       method: "PATCH",
@@ -113,7 +113,7 @@ export const usePromoCodeApi = {
   },
 
   deletePromoCode: async (id: number): Promise<DeletePromoCodeResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/promocode/${id}/`, {
       method: "DELETE",
       headers: createHeaders(),

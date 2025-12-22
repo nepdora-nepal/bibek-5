@@ -5,14 +5,14 @@ import {
   AppointmentFilters,
   AppointmentReason,
 } from "@/types/appointment";
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 export const appointmentAPI = {
   // Get all appointments with filters
   getAppointments: async (
     filters: AppointmentFilters = {}
   ): Promise<PaginatedAppointments> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
 
     const {
       page = 1,
@@ -62,7 +62,7 @@ export const appointmentAPI = {
   createAppointment: async (
     appointmentData: AppointmentFormData
   ): Promise<Appointment> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${BASE_API_URL}/api/appointments/`, {
       method: "POST",
       headers: {
@@ -83,7 +83,7 @@ export const appointmentAPI = {
     id: number,
     data: Partial<AppointmentFormData>
   ): Promise<Appointment> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${BASE_API_URL}/api/appointments/${id}/`, {
       method: "PATCH",
       headers: {
@@ -101,7 +101,7 @@ export const appointmentAPI = {
 
   // Delete appointment
   deleteAppointment: async (id: number): Promise<void> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${BASE_API_URL}/api/appointments/${id}/`, {
       method: "DELETE",
       headers: {
@@ -116,7 +116,7 @@ export const appointmentAPI = {
 
   // Get all appointment reasons
   getAppointmentReasons: async (): Promise<AppointmentReason[]> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${BASE_API_URL}/api/appointment-reasons/`, {
       method: "GET",
       headers: {

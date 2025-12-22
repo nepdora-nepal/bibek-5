@@ -1,13 +1,13 @@
 // services/api/team-member.ts
 
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { Members, TEAM } from "@/types/team-member";
 import { handleApiError } from "@/utils/api-error";
 
 export const teamAPI = {
   getTeamMembers: async (): Promise<Members> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/team-member/`);
 
       const response = await fetch(url.toString(), {
@@ -30,7 +30,7 @@ export const teamAPI = {
 
   createTeamMember: async (memberData: FormData): Promise<TEAM> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/team-member/`);
 
       const response = await fetch(url.toString(), {
@@ -64,7 +64,7 @@ export const teamAPI = {
 
   updateTeamMember: async (id: number, memberData: FormData): Promise<TEAM> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/team-member/${id}/`);
 
       const response = await fetch(url.toString(), {
@@ -98,7 +98,7 @@ export const teamAPI = {
 
   deleteTeamMember: async (id: number): Promise<void> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/team-member/${id}/`);
 
       const response = await fetch(url.toString(), {

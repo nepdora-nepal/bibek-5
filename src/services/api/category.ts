@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { getAuthToken } from "@/utils/auth";
 import { handleApiError } from "@/utils/api-error";
@@ -25,7 +25,7 @@ export const useCategoryApi = {
       sortOrder = "asc",
     } = params;
 
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     // Build query parameters
     const queryParams = new URLSearchParams({
@@ -75,7 +75,7 @@ export const useCategoryApi = {
   },
 
   getCategory: async (slug: string): Promise<Category> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/category/${slug}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -88,7 +88,7 @@ export const useCategoryApi = {
   createCategory: async (
     data: CreateCategoryRequest | FormData
   ): Promise<CreateCategoryResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     let formData: FormData;
 
@@ -123,7 +123,7 @@ export const useCategoryApi = {
     slug: string,
     data: UpdateCategoryRequest | FormData
   ): Promise<UpdateCategoryResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     let body: BodyInit;
     let headers: HeadersInit = {};
@@ -153,7 +153,7 @@ export const useCategoryApi = {
   },
 
   deleteCategory: async (slug: string): Promise<DeleteCategoryResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/category/${slug}/`, {
       method: "DELETE",
       headers: createHeaders(),

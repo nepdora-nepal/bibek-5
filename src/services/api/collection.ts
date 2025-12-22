@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import {
   Collection,
   Collections,
@@ -15,7 +15,7 @@ export const collectionAPI = {
   // Collection Management
   getCollections: async (): Promise<Collections> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/collections/`);
 
       const response = await fetch(url.toString(), {
@@ -38,7 +38,7 @@ export const collectionAPI = {
 
   getCollection: async (slug: string): Promise<Collection> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/collections/${slug}/`);
 
       const response = await fetch(url.toString(), {
@@ -63,7 +63,7 @@ export const collectionAPI = {
     collectionData: CreateCollectionInput
   ): Promise<Collection> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/collections/`);
 
       const response = await fetch(url.toString(), {
@@ -100,7 +100,7 @@ export const collectionAPI = {
     collectionData: UpdateCollectionInput
   ): Promise<Collection> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/collections/${slug}/`);
 
       const response = await fetch(url.toString(), {
@@ -134,7 +134,7 @@ export const collectionAPI = {
 
   deleteCollection: async (slug: string): Promise<void> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/collections/${slug}/`);
 
       const response = await fetch(url.toString(), {
@@ -166,7 +166,7 @@ export const collectionAPI = {
     filters?: Record<string, string>
   ): Promise<CollectionDataListResponse> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/collections/${slug}/data/`);
 
       if (filters) {
@@ -198,7 +198,7 @@ export const collectionAPI = {
     id: number
   ): Promise<CollectionData> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(
         `${BASE_API_URL}/api/collections/${slug}/data/${id}/`
       );
@@ -226,7 +226,7 @@ export const collectionAPI = {
     dataInput: CreateCollectionDataInput
   ): Promise<CollectionData> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/collections/${slug}/data/`);
 
       const response = await fetch(url.toString(), {
@@ -264,7 +264,7 @@ export const collectionAPI = {
     dataInput: UpdateCollectionDataInput
   ): Promise<CollectionData> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(
         `${BASE_API_URL}/api/collections/${slug}/data/${id}/`
       );
@@ -300,7 +300,7 @@ export const collectionAPI = {
 
   deleteCollectionData: async (slug: string, id: number): Promise<void> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(
         `${BASE_API_URL}/api/collections/${slug}/data/${id}/`
       );

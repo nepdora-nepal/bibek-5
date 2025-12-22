@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -21,7 +21,7 @@ import {
 export const issuesApi = {
   // Issue Categories
   getIssueCategories: async (): Promise<IssueCategory[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/issue-category/`, {
       method: "GET",
       headers: createHeaders(),
@@ -32,7 +32,7 @@ export const issuesApi = {
   },
 
   getIssueCategory: async (id: number): Promise<GetIssueCategoryResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/issue-category/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -45,7 +45,7 @@ export const issuesApi = {
   createIssueCategory: async (
     data: CreateIssueCategoryRequest
   ): Promise<CreateIssueCategoryResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/issue-category/`, {
       method: "POST",
@@ -61,7 +61,7 @@ export const issuesApi = {
     id: number,
     data: UpdateIssueCategoryRequest
   ): Promise<UpdateIssueCategoryResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/issue-category/${id}/`, {
       method: "PATCH",
@@ -76,7 +76,7 @@ export const issuesApi = {
   deleteIssueCategory: async (
     id: number
   ): Promise<DeleteIssueCategoryResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/issue-category/${id}/`, {
       method: "DELETE",
@@ -95,7 +95,7 @@ export const issuesApi = {
 
   // Issues
   getIssues: async (): Promise<Issue[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/issue/`, {
       method: "GET",
       headers: createHeaders(),
@@ -106,7 +106,7 @@ export const issuesApi = {
   },
 
   getIssue: async (id: number): Promise<GetIssueResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/issue/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -119,7 +119,7 @@ export const issuesApi = {
   createIssue: async (
     data: CreateIssueRequest
   ): Promise<CreateIssueResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/issue/`, {
       method: "POST",
@@ -135,7 +135,7 @@ export const issuesApi = {
     id: number,
     data: UpdateIssueRequest
   ): Promise<UpdateIssueResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/issue/${id}/`, {
       method: "PATCH",
@@ -148,7 +148,7 @@ export const issuesApi = {
   },
 
   deleteIssue: async (id: number): Promise<DeleteIssueResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/issue/${id}/`, {
       method: "DELETE",

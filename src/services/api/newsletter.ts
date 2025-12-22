@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -15,7 +15,7 @@ export const newsletterApi = {
     pageSize = 10,
     search = ""
   ): Promise<GetNewslettersResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const params = new URLSearchParams({
       page: page.toString(),
       page_size: pageSize.toString(),
@@ -35,7 +35,7 @@ export const newsletterApi = {
   createNewsletter: async (
     data: CreateNewsletterRequest
   ): Promise<CreateNewsletterResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/newsletter/`, {
       method: "POST",
       headers: createHeaders(),

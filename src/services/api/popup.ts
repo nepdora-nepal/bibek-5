@@ -5,12 +5,12 @@ import {
   PopupFormFilters,
   PaginatedPopupFormResponse,
 } from "@/types/popup";
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 export const popupApi = {
   // Popup CRUD operations
   getPopups: async (): Promise<PopUp[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup/`);
     if (!response.ok) throw new Error("Failed to fetch popups");
@@ -18,7 +18,7 @@ export const popupApi = {
   },
 
   getPopup: async (id: number): Promise<PopUp> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup/${id}/`);
     if (!response.ok) throw new Error("Failed to fetch popup");
@@ -26,7 +26,7 @@ export const popupApi = {
   },
 
   createPopup: async (data: FormData): Promise<PopUp> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup/`, {
       method: "POST",
@@ -40,7 +40,7 @@ export const popupApi = {
   },
 
   updatePopup: async (id: number, data: FormData): Promise<PopUp> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup/${id}/`, {
       method: "PUT",
@@ -54,7 +54,7 @@ export const popupApi = {
   },
 
   deletePopup: async (id: number): Promise<void> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup/${id}/`, {
       method: "DELETE",
@@ -66,7 +66,7 @@ export const popupApi = {
   getPopupForms: async (
     filters?: PopupFormFilters
   ): Promise<PaginatedPopupFormResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const params = new URLSearchParams();
     if (filters?.page) params.append("page", filters.page.toString());
@@ -84,7 +84,7 @@ export const popupApi = {
   },
 
   getPopupForm: async (id: number): Promise<PopUpForm> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup-form/${id}/`);
     if (!response.ok) throw new Error("Failed to fetch popup form");
@@ -92,7 +92,7 @@ export const popupApi = {
   },
 
   createPopupForm: async (data: PopUpForm): Promise<PopUpForm> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup-form/`, {
       method: "POST",
@@ -109,7 +109,7 @@ export const popupApi = {
   },
 
   updatePopupForm: async (id: number, data: PopUpForm): Promise<PopUpForm> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup-form/${id}/`, {
       method: "PUT",
@@ -126,7 +126,7 @@ export const popupApi = {
   },
 
   deletePopupForm: async (id: number): Promise<void> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup-form/${id}/`, {
       method: "DELETE",
@@ -135,7 +135,7 @@ export const popupApi = {
   },
 
   getActivePopup: async (): Promise<PopUp | null> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup/?is_active=true`);
     if (!response.ok) throw new Error("Failed to fetch active popup");
@@ -151,7 +151,7 @@ export const popupApi = {
     popupId: number,
     formData: PopupFormData
   ): Promise<{ success: boolean; message: string }> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/popup-form/`, {
       method: "POST",

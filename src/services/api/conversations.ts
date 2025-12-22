@@ -1,10 +1,11 @@
 import {
+  WebhookNewMessageEvent,
   SendMessageRequest,
 } from "@/types/conversations";
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 // Use the vapebox subdomain for all API calls
-const API_BASE_URL = getApiBaseUrl();
+const API_BASE_URL = siteConfig.apiBaseUrl;
 /**
  * Handles API responses robustly
  */

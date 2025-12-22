@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -18,7 +18,7 @@ export const usePricingApi = {
   ): Promise<GetPricingsResponse> => {
     const { search, sortBy, sortOrder = "asc" } = params;
 
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const queryParams = new URLSearchParams();
 
@@ -56,7 +56,7 @@ export const usePricingApi = {
   },
 
   getPricing: async (id: number): Promise<Pricing> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/our-pricing/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -69,7 +69,7 @@ export const usePricingApi = {
   createPricing: async (
     data: CreatePricingRequest
   ): Promise<CreatePricingResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/our-pricing/`, {
       method: "POST",
@@ -89,7 +89,7 @@ export const usePricingApi = {
     id: number,
     data: UpdatePricingRequest
   ): Promise<UpdatePricingResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const response = await fetch(`${API_BASE_URL}/api/our-pricing/${id}/`, {
       method: "PATCH",
@@ -106,7 +106,7 @@ export const usePricingApi = {
   },
 
   deletePricing: async (id: number): Promise<DeletePricingResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/our-pricing/${id}/`, {
       method: "DELETE",
       headers: createHeaders(),

@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -14,7 +14,7 @@ import {
 export const paymentGatewayApi = {
   // Get all payment gateway configs
   getPaymentGateways: async (): Promise<PaymentGateway[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/payment-gateway/list/`, {
       method: "GET",
       headers: createHeaders(),
@@ -23,7 +23,7 @@ export const paymentGatewayApi = {
     return response.json();
   },
   getPaymentGatewayKhalti: async (): Promise<PaymentGateway[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(
       `${API_BASE_URL}/api/payment-gateway/?payment_type=khalti`,
       {
@@ -35,7 +35,7 @@ export const paymentGatewayApi = {
     return response.json();
   },
   getPaymentGatewayEsewa: async (): Promise<PaymentGateway[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(
       `${API_BASE_URL}/api/payment-gateway/?payment_type=esewa`,
       {
@@ -49,7 +49,7 @@ export const paymentGatewayApi = {
 
   // Get single payment gateway config by ID
   getPaymentGateway: async (id: string): Promise<GetPaymentGatewayResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/payment-gateway/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -62,7 +62,7 @@ export const paymentGatewayApi = {
   createPaymentGateway: async (
     data: CreatePaymentGatewayRequest
   ): Promise<CreatePaymentGatewayResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/payment-gateway/`, {
       method: "POST",
       headers: createHeaders(),
@@ -77,7 +77,7 @@ export const paymentGatewayApi = {
     id: string,
     data: UpdatePaymentGatewayRequest
   ): Promise<UpdatePaymentGatewayResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/payment-gateway/${id}/`, {
       method: "PATCH",
       headers: createHeaders(),
@@ -91,7 +91,7 @@ export const paymentGatewayApi = {
   deletePaymentGateway: async (
     id: string
   ): Promise<DeletePaymentGatewayResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/payment-gateway/${id}/`, {
       method: "DELETE",
       headers: createHeaders(),

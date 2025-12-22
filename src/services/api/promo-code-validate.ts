@@ -1,6 +1,6 @@
 // services/api/promo-code.ts
 
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -14,7 +14,7 @@ export const promoCodeApi = {
   validatePromoCode: async (
     data: ValidatePromoCodeRequest
   ): Promise<ValidatePromoCodeResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/promocode/validate/`, {
       method: "POST",
       headers: createHeaders(),

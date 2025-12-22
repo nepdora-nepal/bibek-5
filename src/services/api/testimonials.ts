@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -28,7 +28,7 @@ const createFormData = (
 export const testimonialsApi = {
   // Get all testimonials
   getAll: async (): Promise<TestimonialResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/testimonial/`, {
       method: "GET",
       headers: createHeaders(),
@@ -40,7 +40,7 @@ export const testimonialsApi = {
 
   // Get testimonial by ID
   getById: async (id: number): Promise<Testimonial> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/testimonial/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -53,7 +53,7 @@ export const testimonialsApi = {
   // Create new testimonial
   create: async (data: CreateTestimonialData): Promise<Testimonial> => {
     const formData = createFormData(data);
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/testimonial/`, {
       method: "POST",
       body: formData,
@@ -69,7 +69,7 @@ export const testimonialsApi = {
     data: UpdateTestimonialData
   ): Promise<Testimonial> => {
     const formData = createFormData(data);
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/testimonial/${id}/`, {
       method: "PATCH",
       body: formData,
@@ -83,7 +83,7 @@ export const testimonialsApi = {
   delete: async (
     id: number
   ): Promise<{ success: boolean; message: string }> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/testimonial/${id}/`, {
       method: "DELETE",
       headers: createHeaders(),

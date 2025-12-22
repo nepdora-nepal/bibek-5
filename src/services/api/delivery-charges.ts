@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -14,7 +14,7 @@ export const deliveryChargesApi = {
   getDefaultDeliveryCharges: async (): Promise<{
     default_price: DefaultDeliveryCharge[];
   }> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(
       `${API_BASE_URL}/api/default-delivery-charges/`,
       {
@@ -35,7 +35,7 @@ export const deliveryChargesApi = {
     id: number,
     data: Omit<DefaultDeliveryCharge, "id" | "location_name" | "is_default">
   ): Promise<DefaultDeliveryCharge> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(
       `${API_BASE_URL}/api/delivery-charges/${id}/`,
       {
@@ -66,7 +66,7 @@ export const deliveryChargesApi = {
     page_size: number = 50,
     search?: string
   ): Promise<DeliveryChargesResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const params = new URLSearchParams();
     params.append("page", page.toString());
     params.append("page_size", page_size.toString());
@@ -91,7 +91,7 @@ export const deliveryChargesApi = {
 
   // Load default values
   loadDefaultValues: async (): Promise<DeliveryChargesResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(
       `${API_BASE_URL}/api/delivery-charges/load-default/`,
       {
@@ -112,7 +112,7 @@ export const deliveryChargesApi = {
     data: UpdateDeliveryChargeRequest
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): Promise<any> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const { id, ...updateData } = data;
     const response = await fetch(
       `${API_BASE_URL}/api/delivery-charges/${id}/`,
@@ -143,7 +143,7 @@ export const deliveryChargesApi = {
     data: CreateDeliveryChargeRequest
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
   ): Promise<any> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/delivery-charges/`, {
       method: "POST",
       headers: createHeaders(),

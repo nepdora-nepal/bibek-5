@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { getAuthToken } from "@/utils/auth";
 import { handleApiError } from "@/utils/api-error";
@@ -44,7 +44,7 @@ const buildBlogFormData = (
 
 export const blogApi = {
   getBlogs: async (filters?: BlogFilters): Promise<PaginatedBlogResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const queryParams = new URLSearchParams();
 
     if (filters) {
@@ -72,7 +72,7 @@ export const blogApi = {
   },
 
   getBlogBySlug: async (slug: string): Promise<BlogPost> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/blogs/${slug}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -83,7 +83,7 @@ export const blogApi = {
   },
 
   getTags: async (): Promise<BlogTag[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/tags/`, {
       method: "GET",
       headers: createHeaders(),
@@ -97,7 +97,7 @@ export const blogApi = {
 
   // New function to create tags
   createTag: async (tagData: CreateBlogTag): Promise<BlogTag> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/tags/`, {
       method: "POST",
       headers: {
@@ -113,7 +113,7 @@ export const blogApi = {
   },
 
   create: async (blogData: CreateBlogPost): Promise<BlogPost> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const formData = buildBlogFormData(blogData);
 
     const response = await fetch(`${API_BASE_URL}/api/blogs/`, {
@@ -133,7 +133,7 @@ export const blogApi = {
     slug: string,
     blogData: Omit<UpdateBlogPost, "id">
   ): Promise<BlogPost> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const formData = buildBlogFormData(blogData);
 
     const response = await fetch(`${API_BASE_URL}/api/blogs/${slug}/`, {
@@ -150,7 +150,7 @@ export const blogApi = {
   },
 
   delete: async (slug: string): Promise<void> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/blogs/${slug}/`, {
       method: "DELETE",
       headers: {

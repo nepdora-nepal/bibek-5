@@ -4,13 +4,13 @@ import {
   BookingFilters,
   BookingData,
 } from "@/types/booking";
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 export const bookingAPI = {
   getBookings: async (
     filters: BookingFilters = {}
   ): Promise<PaginatedBookings> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
 
     const { page = 1, page_size = 10, search } = filters;
 
@@ -40,7 +40,7 @@ export const bookingAPI = {
   },
 
   getBookingById: async (id: number): Promise<Booking> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const response = await fetch(
       `${BASE_API_URL}/api/collections/booking/data/${id}/`,
       {
@@ -62,7 +62,7 @@ export const bookingAPI = {
     id: number,
     data: Partial<BookingData>
   ): Promise<Booking> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const response = await fetch(
       `${BASE_API_URL}/api/collections/booking/data/${id}/`,
       {

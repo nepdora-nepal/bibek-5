@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { handleApiError } from "@/utils/api-error";
 
 export interface BulkUploadResponse {
@@ -21,7 +21,7 @@ export interface DownloadTemplateResponse {
 export const bulkUploadApi = {
   // Bulk upload products via CSV
   bulkUpload: async (file: File): Promise<BulkUploadResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const url = `${API_BASE_URL}/api/bulk-upload/`;
 
     const formData = new FormData();
@@ -38,7 +38,7 @@ export const bulkUploadApi = {
 
   // Download CSV template
   downloadTemplate: async (): Promise<Blob> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const url = `${API_BASE_URL}/api/download-template/`;
 
     const token = localStorage.getItem("authToken");

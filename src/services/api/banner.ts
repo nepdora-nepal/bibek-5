@@ -1,9 +1,10 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import {
   CreateBannerWithImagesRequest,
   Banner,
   UpdateBannerWithImagesRequest,
 } from "@/types/banner";
+const API_BASE_URL = siteConfig.apiBaseUrl;
 
 const prepareFormData = (
   data: CreateBannerWithImagesRequest | UpdateBannerWithImagesRequest,
@@ -50,7 +51,6 @@ const prepareFormData = (
 export const bannerApi = {
   // Get all banners with images
   getBanners: async (): Promise<Banner[]> => {
-    const API_BASE_URL = getApiBaseUrl();
 
     const response = await fetch(`${API_BASE_URL}/api/banners/`);
     if (!response.ok) {
@@ -61,7 +61,7 @@ export const bannerApi = {
 
   // Get single banner with images
   getBanner: async (id: number): Promise<Banner> => {
-    const API_BASE_URL = getApiBaseUrl();
+    
 
     const response = await fetch(`${API_BASE_URL}/api/banners/${id}/`);
     if (!response.ok) {
@@ -74,7 +74,7 @@ export const bannerApi = {
   createBannerWithImages: async (
     data: CreateBannerWithImagesRequest
   ): Promise<Banner> => {
-    const API_BASE_URL = getApiBaseUrl();
+    
 
     const formData = prepareFormData(data, false);
 
@@ -103,7 +103,7 @@ export const bannerApi = {
     id: number,
     data: UpdateBannerWithImagesRequest
   ): Promise<Banner> => {
-    const API_BASE_URL = getApiBaseUrl();
+    
 
     const formData = prepareFormData(data, true);
 
@@ -129,7 +129,7 @@ export const bannerApi = {
 
   // Delete banner
   deleteBanner: async (id: number): Promise<void> => {
-    const API_BASE_URL = getApiBaseUrl();
+    
 
     const response = await fetch(`${API_BASE_URL}/api/banners/${id}/`, {
       method: "DELETE",

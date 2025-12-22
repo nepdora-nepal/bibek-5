@@ -1,11 +1,11 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { SiteConfig } from "@/types/site-config";
 import { handleApiError } from "@/utils/api-error";
 
 export const siteConfigAPI = {
   getSiteConfig: async (): Promise<SiteConfig | null> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/`);
       const response = await fetch(url.toString(), {
         method: "GET",
@@ -37,7 +37,7 @@ export const siteConfigAPI = {
     accessToken?: string
   ): Promise<SiteConfig> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/`);
 
       const headers: HeadersInit = {};
@@ -80,7 +80,7 @@ export const siteConfigAPI = {
     accessToken?: string
   ): Promise<SiteConfig> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/${configId}/`);
 
       const headers: HeadersInit = {};
@@ -122,7 +122,7 @@ export const siteConfigAPI = {
     accessToken?: string
   ): Promise<void> => {
     try {
-      const BASE_API_URL = getApiBaseUrl();
+      const BASE_API_URL = siteConfig.apiBaseUrl;
       const url = new URL(`${BASE_API_URL}/api/site-config/${configId}/`);
 
       const headers: HeadersInit = {};

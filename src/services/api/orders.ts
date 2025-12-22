@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders, createHeadersCustomer } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -15,7 +15,7 @@ export const orderApi = {
     orderData: CreateOrderRequest,
     includeToken: boolean = false
   ): Promise<Order> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const headers = includeToken
       ? createHeadersCustomer()
@@ -36,7 +36,7 @@ export const orderApi = {
     params: OrderPaginationParams = {}
   ): Promise<OrdersResponse> => {
     const { page = 1, page_size = 10, search, status, is_manual } = params;
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
 
     const queryParams = new URLSearchParams({
       page: page.toString(),
@@ -60,7 +60,7 @@ export const orderApi = {
   },
 
   getOrderById: async (id: number): Promise<Order> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/order/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -73,7 +73,7 @@ export const orderApi = {
     id: number,
     statusData: UpdateOrderStatusRequest
   ): Promise<Order> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/order/${id}/`, {
       method: "PATCH",
       headers: createHeaders(),
@@ -88,7 +88,7 @@ export const orderApi = {
     id: number,
     paymentData: UpdateOrderPaymentRequest
   ): Promise<Order> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/order/${id}/`, {
       method: "PATCH",
       headers: createHeaders(),

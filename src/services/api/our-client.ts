@@ -3,13 +3,13 @@ import {
   OurClientFormData,
   OurClientFilters,
 } from "@/types/our-client";
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 export const ourClientAPI = {
   getOurClients: async (
     filters: OurClientFilters = {}
   ): Promise<OurClient[]> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
 
     const { search } = filters;
 
@@ -36,7 +36,7 @@ export const ourClientAPI = {
   createOurClient: async (
     clientData: OurClientFormData
   ): Promise<OurClient> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const formData = new FormData();
     formData.append("name", clientData.name);
     if (clientData.url) {
@@ -62,7 +62,7 @@ export const ourClientAPI = {
     id: number,
     clientData: Partial<OurClientFormData>
   ): Promise<OurClient> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const formData = new FormData();
     if (clientData.name) formData.append("name", clientData.name);
     if (clientData.url) formData.append("url", clientData.url);
@@ -83,7 +83,7 @@ export const ourClientAPI = {
   },
 
   deleteOurClient: async (id: number): Promise<void> => {
-    const BASE_API_URL = getApiBaseUrl();
+    const BASE_API_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${BASE_API_URL}/api/our-client/${id}/`, {
       method: "DELETE",
     });

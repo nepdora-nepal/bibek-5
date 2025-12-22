@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { createHeaders } from "@/utils/headers";
 import { handleApiError } from "@/utils/api-error";
 import {
@@ -14,7 +14,7 @@ import {
 export const whatsappApi = {
   // Get all whatsapp configs
   getWhatsApps: async (): Promise<WhatsApp[]> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/whatsapp/`, {
       method: "GET",
       headers: createHeaders(),
@@ -25,7 +25,7 @@ export const whatsappApi = {
 
   // Get single whatsapp config by ID
   getWhatsApp: async (id: string): Promise<GetWhatsAppResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/whatsapp/${id}/`, {
       method: "GET",
       headers: createHeaders(),
@@ -38,7 +38,7 @@ export const whatsappApi = {
   createWhatsApp: async (
     data: CreateWhatsAppRequest
   ): Promise<CreateWhatsAppResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/whatsapp/`, {
       method: "POST",
       headers: createHeaders(),
@@ -53,7 +53,7 @@ export const whatsappApi = {
     id: string,
     data: UpdateWhatsAppRequest
   ): Promise<UpdateWhatsAppResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/whatsapp/${id}/`, {
       method: "PATCH",
       headers: createHeaders(),
@@ -65,7 +65,7 @@ export const whatsappApi = {
 
   // Delete whatsapp config
   deleteWhatsApp: async (id: string): Promise<DeleteWhatsAppResponse> => {
-    const API_BASE_URL = getApiBaseUrl();
+    const API_BASE_URL = siteConfig.apiBaseUrl;
     const response = await fetch(`${API_BASE_URL}/api/whatsapp/${id}/`, {
       method: "DELETE",
       headers: createHeaders(),
