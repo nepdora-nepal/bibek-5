@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Nepdora",
   description: "Nepdora Preview System",
-  tenantName: "brainstorm-global-education",
+    tenantName: "nextjs-web-container",
   get apiBaseUrl() {
     return process.env.NEXT_PUBLIC_API_URL || `https://${this.tenantName}.nepdora.baliyoventures.com`;
   },
