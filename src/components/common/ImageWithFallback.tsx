@@ -3,14 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image, { ImageProps } from "next/image";
 import { getImageUrl } from "@/config/site";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { Pencil, Upload, Image as ImageIcon } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
 import { ImageManagerModal } from "@/components/builder/ImageManagerModal";
 import { updateImageMap } from "@/services/image-service";
 import { toast } from "sonner";
@@ -75,22 +68,17 @@ const ImageWithFallback = (props: ImageWithFallbackProps) => {
         <div className={cn("relative group inline-block", props.fill ? "w-full h-full" : "")}>
             {imageElement}
 
-            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-50">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button size="icon" variant="secondary" className="h-8 w-8 rounded-full shadow-md bg-white/90 hover:bg-white text-black">
-                            <Pencil className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuItem onClick={() => { setManagerTab("upload"); setShowManager(true); }}>
-                            <Upload className="mr-2 h-4 w-4" /> Upload New
-                        </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => { setManagerTab("library"); setShowManager(true); }}>
-                            <ImageIcon className="mr-2 h-4 w-4" /> Choose Existing
-                        </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+            <div
+                className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-50 cursor-pointer"
+                onClick={() => {
+                    setManagerTab("library");
+                    setShowManager(true);
+                }}
+            >
+                <div className="bg-white/90 rounded-full px-4 py-2 flex items-center gap-2 shadow-lg hover:bg-white transition-colors">
+                    <ImageIcon className="h-4 w-4 text-black" />
+                    <span className="text-sm font-medium text-black">Change Image</span>
+                </div>
             </div>
 
             <ImageManagerModal

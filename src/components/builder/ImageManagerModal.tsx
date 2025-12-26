@@ -65,8 +65,8 @@ export function ImageManagerModal({ isOpen, onClose, onSelect, initialTab = "lib
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-3xl h-[80vh] flex flex-col p-0 gap-0">
-                <DialogHeader className="p-6 pb-4 border-b">
+            <DialogContent className="max-w-[95vw] sm:max-w-4xl h-[90vh] sm:h-[85vh] flex flex-col p-0 gap-0">
+                <DialogHeader className="p-4 sm:p-6 pb-2 sm:pb-4 border-b">
                     <DialogTitle>Image Manager</DialogTitle>
                 </DialogHeader>
 
@@ -89,46 +89,48 @@ export function ImageManagerModal({ isOpen, onClose, onSelect, initialTab = "lib
                     </div>
 
                     <TabsContent value="library" className="flex-1 min-h-0 p-0 overflow-hidden relative">
-                        <ScrollArea className="h-full p-6">
-                            {isLoadingImages ? (
-                                <div className="flex items-center justify-center h-40">
-                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-                                </div>
-                            ) : isError ? (
-                                <div className="flex items-center justify-center h-40 text-destructive">
-                                    Failed to load images
-                                </div>
-                            ) : (
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                    {images && Object.entries(images).map(([key]) => (
-                                        <div
-                                            key={key}
-                                            className={cn(
-                                                "relative group cursor-pointer aspect-square rounded-lg overflow-hidden border-2 transition-all",
-                                                selectedImage === key ? "border-primary ring-2 ring-primary ring-offset-2" : "border-transparent hover:border-muted-foreground/25"
-                                            )}
-                                            onClick={() => setSelectedImage(key)}
-                                        >
-                                            <Image
-                                                src={getImageUrl(key)}
-                                                alt={key}
-                                                fill
-                                                className="object-cover"
-                                            />
-                                            {selectedImage === key && (
-                                                <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
-                                                    <div className="bg-primary text-primary-foreground rounded-full p-1">
-                                                        <Check className="h-4 w-4" />
+                        <ScrollArea className="h-full">
+                            <div className="p-4 sm:p-6">
+                                {isLoadingImages ? (
+                                    <div className="flex items-center justify-center h-40">
+                                        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                    </div>
+                                ) : isError ? (
+                                    <div className="flex items-center justify-center h-40 text-destructive">
+                                        Failed to load images
+                                    </div>
+                                ) : (
+                                    <div className="grid grid-cols-2 min-[480px]:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                                        {images && Object.entries(images).map(([key]) => (
+                                            <div
+                                                key={key}
+                                                className={cn(
+                                                    "relative group cursor-pointer aspect-square rounded-lg overflow-hidden border-2 transition-all shadow-sm",
+                                                    selectedImage === key ? "border-primary ring-2 ring-primary ring-offset-2" : "border-transparent hover:border-muted-foreground/25"
+                                                )}
+                                                onClick={() => setSelectedImage(key)}
+                                            >
+                                                <Image
+                                                    src={getImageUrl(key)}
+                                                    alt={key}
+                                                    fill
+                                                    className="object-cover"
+                                                />
+                                                {selectedImage === key && (
+                                                    <div className="absolute inset-0 bg-primary/20 flex items-center justify-center">
+                                                        <div className="bg-primary text-primary-foreground rounded-full p-1">
+                                                            <Check className="h-4 w-4" />
+                                                        </div>
                                                     </div>
+                                                )}
+                                                <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-[10px] sm:text-xs p-1 truncate px-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    {key}
                                                 </div>
-                                            )}
-                                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs p-1 truncate px-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                {key}
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         </ScrollArea>
 
                     </TabsContent>
