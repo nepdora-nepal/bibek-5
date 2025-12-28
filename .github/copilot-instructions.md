@@ -214,6 +214,25 @@ const issuesApi = { getIssues(), createIssue(), updateIssue() }
 // Note: Hooks likely follow standard pattern: useIssues, useCreateIssue
 ```
 
+### 5. Authentication Domain
+
+#### Types (`src/types/auth/customer/auth.ts`)
+```typescript
+interface User { id: number; email: string; first_name: string; last_name: string; phone?: string; address?: string; }
+interface AuthTokens { access: string; refresh: string; }
+interface DecodedAccessToken { exp: number; user_id: number; email: string; ... }
+```
+
+#### Services & Context
+```typescript
+// Auth API (src/services/auth/customer/api.ts)
+const authApi = { loginUser(data), signupUser(data) }
+
+// Auth Context (src/contexts/AuthContext.tsx)
+// use useContext(AuthContext) to access:
+// { user, tokens, login(data), signup(data), logout(), isLoading, isAuthenticated }
+```
+
 ---
 
 ## Reference: Components, Utils, & Config
@@ -236,6 +255,9 @@ This project uses a Shadcn-like component library. Prefer these primitives over 
 ### 3. Contexts (`src/contexts/`)
 - **CartContext:** Manages e-commerce cart state.
   - `useCart()` exposes: `{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, totalAmount }`
+- **AuthContext:** Manages customer authentication (JWT-based).
+  - Use `useContext(AuthContext)` to access: `{ user, tokens, login, signup, logout, isLoading, isAuthenticated }`
+  - Wrap application with `CustomerPublishAuthProvider`.
 
 ### 4. Schemas (`src/schemas/`)
 Zod definitions for form validation. Use these with `react-hook-form`.
@@ -366,6 +388,30 @@ interface ServicesPost {
   slug: string;
   description: string;
   thumbnail_image: string | null;
+}
+```
+
+### `auth.ts` (Customer Authentication)
+```typescript
+interface User {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone?: string | null;
+  address?: string | null;
+}
+
+interface AuthTokens {
+  access: string;
+  refresh: string;
+}
+
+interface SignupResponse {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
 }
 ```
 
@@ -522,6 +568,12 @@ const usePricingApi = {
   createPricing: (data: CreatePricingRequest) => Promise<CreatePricingResponse>,
   updatePricing: (id: number, data: UpdatePricingRequest) => Promise<UpdatePricingResponse>,
   deletePricing: (id: number) => Promise<DeletePricingResponse>,
+}
+
+// Auth API (src/services/auth/customer/api.ts)
+const authApi = {
+  loginUser: (data: LoginData) => Promise<LoginResponse>,
+  signupUser: (data: SignupData) => Promise<SignupResponse>,
 }
 ```
 
